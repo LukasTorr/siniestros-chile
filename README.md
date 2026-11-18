@@ -12,13 +12,38 @@ Proyecto del curso Minería de Datos, Universidad de Tarapacá. Lukas Torres y C
 
 CONASET, *Siniestros individuales 2020–2025*, a partir de los partes de Carabineros de Chile (https://mapas-conaset.opendata.arcgis.com/). La información es referencial. Los resultados muestran asociaciones, no causas.
 
-La carpeta `resultados/` contiene lo que la aplicación necesita: las reglas encontradas, las predicciones sobre el conjunto de prueba, los grupos de comunas y el modelo entrenado.
+## Estructura
 
-## Ejecutar en local
+| Ruta | Contenido |
+|---|---|
+| `app.py` | Aplicación Streamlit |
+| `resultados/` | Resultados de los algoritmos que usa la app: reglas, predicciones, métricas, grupos de comunas, modelo entrenado, importancia de variables y valores SHAP |
+| `pipeline/01_descarga.py` | Descarga las bases desde el servicio ArcGIS de CONASET |
+| `pipeline/02_limpieza.py` | Limpia la base de siniestros → `data/processed/siniestros_limpio.csv` |
+| `pipeline/03_modelos.py` | Reglas de asociación (FP-Growth), clasificación (gradient boosting) y clustering (K-Means) → `resultados/` |
+| `pipeline/04_visualizaciones.py` | Figuras PNG y vistas HTML → `visualizaciones/`. También agrega a `comunas_clusters.csv` el nombre de cada grupo, que usa la app |
 
-Requiere Python 3.13.
+Las carpetas `data/` y `visualizaciones/` no se suben al repositorio: la base limpia pesa 128 MB, y ambas se regeneran con los scripts.
+
+## Ver la aplicación
+
+Requiere Python 3.13. La carpeta `resultados/` ya trae todo lo necesario.
 
 ```bash
 pip install -r requirements.txt
 streamlit run app.py
 ```
+
+## Reproducir los resultados
+
+Desde la raíz del repositorio y en este orden (`04` debe correr después de `03`):
+
+```bash
+pip install -r requirements-pipeline.txt
+python pipeline/01_descarga.py siniestros
+python pipeline/02_limpieza.py
+python pipeline/03_modelos.py
+python pipeline/04_visualizaciones.py
+```
+
+La descarga tarda unos 10 minutos y `03_modelos.py` unos 3. Los algoritmos usan una semilla fija (42), así que los resultados coinciden con los de `resultados/`.
