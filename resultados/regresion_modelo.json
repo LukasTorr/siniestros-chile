@@ -1,0 +1,42 @@
+{
+  "n_comunas": 300,
+  "variables": {
+    "pct_rural": "Siniestros en zona rural",
+    "pct_noche": "Siniestros de noche",
+    "pct_atropello": "Atropellos",
+    "pct_moto": "Siniestros con moto",
+    "pct_curva": "Siniestros en curva"
+  },
+  "intercepto": -0.03989588616197401,
+  "coeficientes": {
+    "pct_rural": 0.1015301691110871,
+    "pct_noche": 0.2045895459030976,
+    "pct_atropello": 0.24489260157351472,
+    "pct_moto": 0.24906878204520266,
+    "pct_curva": 0.04163124206137217
+  },
+  "r2_entrenamiento": 0.4156579325554173,
+  "r2_validacion_cruzada": 0.38404269310582956,
+  "mae_validacion_cruzada": 0.025369032778242033,
+  "promedios": {
+    "pct_rural": 0.4628858851019815,
+    "pct_noche": 0.3999739898774465,
+    "pct_atropello": 0.06040224664093154,
+    "pct_moto": 0.08046955779729033,
+    "pct_curva": 0.08939283650754253
+  },
+  "desviaciones": {
+    "pct_rural": 0.2929747745291521,
+    "pct_noche": 0.04365497789037395,
+    "pct_atropello": 0.02638921040289573,
+    "pct_moto": 0.0507396274148272,
+    "pct_curva": 0.09342637768116663
+  },
+  "simple": {
+    "variable": "pct_rural",
+    "intercepto": 0.08674714592972624,
+    "pendiente": 0.08801391717357814,
+    "r2_entrenamiento": 0.31556470036509343,
+    "r2_validacion_cruzada": 0.2930980299194269
+  }
+}
